@@ -1,0 +1,17 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+    <h2>Are you sure you want to permanently delete entry, {{ title }}?</h2>
+    <form action="{% url 'delete' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="entry_title" value="{{ title }}">
+        <input type="submit" value="Delete Entry" class="btn btn-danger">
+    </form>
+
+    <a href="{% url 'index' %}">Cancel</a>
+
+{% endblock %}
